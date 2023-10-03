@@ -1,5 +1,5 @@
 package sistemaJavalar;
-
+import java.util.ArrayList;
 public class Corpo {
 	//posicao
 	protected int x = 10;
@@ -10,8 +10,8 @@ public class Corpo {
 	public int sobra;
 	private int vel;
 	protected int ano;
-	protected int qtdDias;
-	protected float dia;
+	protected float qtdDias;
+	protected float duraDia;
 	
 	private boolean cima = false;
 	public boolean esquerda = true;
@@ -24,11 +24,23 @@ public class Corpo {
 		this.dist = distancia;
 		this.y+= distancia ;
 		this.nome = nome;
-		this.dia = dia;
+		this.duraDia = dia;
 	}
 	
 	public int getVel() {
 		return this.vel;
+	}
+	
+	// Muda a velocidade do planeta
+	public void colisao(ArrayList<UFO> ufo){
+		if(this.vel != 0) {
+			for (int i = 0; i < ufo.size(); i++) {
+				if(this.x == ufo.get(i).getX() && this.y == ufo.get(i).getY()) {
+					this.vel+= ufo.get(i).getIncremento();
+					
+				}
+			}
+		}	
 	}
 	
 	public void cima() {
@@ -112,10 +124,14 @@ public class Corpo {
 	//descrição das posições dos planetas
 	public void desc() {
 		System.out.println(
+				"Planeta "+
 				this.nome+
-				"\nx = "+this.x+
-				"\ny = "+this.y+
-				"\npassaram "+this.ano+" anos\n==================\n"+
-				"dias: ");
+				"\n   posição x = "+this.x+
+				"\n   posição y = "+this.y+
+				"\n   velocidade= "+this.vel+
+				"\n   Translação = "+this.ano+ " anos"+
+				"\n   Rotação = " +this.qtdDias+" dias"+
+				
+				" \n==================\n");
 	}
 }
