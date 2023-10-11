@@ -8,7 +8,7 @@ public class UFO {
 	public boolean colidiu = false;
 	private int incremento;// velocidade a ser incrementada no planeta (+/-)
 	private Random gerador = new Random();
-	
+	//construtor
 	public UFO(int range, int incremento) {
 		this.x = gerador.nextInt(range);
 		this.y = gerador.nextInt(range);
@@ -38,6 +38,10 @@ public class UFO {
 		for(int i = 0; i< planetas.size(); i++) {
 			if(this.x == planetas.get(i).x && this.y == planetas.get(i).y) {
 				this.colidiu = true;
+				if (this.incremento>0)
+					planetas.get(i).nColisoesDev++;
+				else if(this.incremento<0)
+					planetas.get(i).nColisoesBug++;
 			}
 		}
 	}

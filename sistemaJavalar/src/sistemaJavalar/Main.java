@@ -36,6 +36,10 @@ public class Main {
 	//menu do usuario
 	public static void menu(Scanner entrada, Sistema sistema, ArrayList<Corpo> planetas, ArrayList<UFO> dev, ArrayList<UFO> bug ) {
 		int qtdePlanetas = planetas.size();
+		
+		/*
+		 * 	entrada de dados do usuario
+		 * */
 		System.out.println("digite uma quantidade de tempo em anos terrestres: ");
 		sistema.setTempo( entrada.nextInt());
 		
@@ -44,27 +48,26 @@ public class Main {
 		
 		System.out.println("digite uma quantidade de Bugs: ");
 		sistema.setBug( entrada.nextInt(),bug);
-		// verifica colisao com planetas
+		////////////////////////////////////////////////////////////////
+		
+		// chamada de colisao com planetas
 		for(int i = 0; i<bug.size(); i++) {
 			bug.get(i).verificaPosicao(planetas);
 		}
 		for(int i = 0; i<dev.size(); i++) {
 			dev.get(i).verificaPosicao(planetas);
 		}
-		for(int i = 0; i < planetas.size(); i++ ) {
-			planetas.get(i).colisao(bug);
-			planetas.get(i).colisao(dev);
-			sistema.removePlaneta(planetas);
-			sistema.passaTempo(planetas.get(i));
-			sistema.relatorio(planetas.get(i));
-		}
 		
+		sistema.relatorioParsial(planetas, dev, bug, qtdePlanetas);
+		
+		//remoção de desenvolvedores depois de colidir
 		for(int i = 0; i<dev.size(); i++) {
 			if(dev.get(i).colidiu)
 				dev.remove(i);
 			else
 				dev.get(i).desc();
 		}
+		// remoção de bugs depois de colidir
 		for(int i = 0; i<bug.size(); i++) {
 			if(bug.get(i).colidiu)
 				bug.remove(i);
@@ -75,12 +78,12 @@ public class Main {
 		//////////////
 		System.out.println("Bugs            = "+bug.size());
 		System.out.println("Desenvolvedores = "+dev.size());
-		if(planetas.size()<qtdePlanetas) {
-			System.out.println(planetas.size()-qtdePlanetas+" planeta(s) explodiu!!");
-			qtdePlanetas = planetas.size();
-		}
 		
 		int continua;
+		
+		/********
+		 * Final da rodada!!
+		 * */
 		System.out.println("deseja continuar? (1-sim; 2- não)");
 		continua =  entrada.nextInt();
 		switch(continua) {
@@ -89,6 +92,7 @@ public class Main {
 			break;
 		case 2:
 			System.out.println("finalizando...");
+			sistema.relatorio(planetas, dev, bug, qtdePlanetas);
 			break;
 		default:	
 		}
