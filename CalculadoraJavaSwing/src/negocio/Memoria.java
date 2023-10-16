@@ -32,13 +32,13 @@ public class Memoria {
 				parcela2 = Float.valueOf(resultado2); 
 				System.out.println(parcela1+op+parcela2);
 				if(op.equals("+"))
-					resultado = ""+(parcela1+parcela2);
+					resultado += ""+(parcela1+parcela2);
 				else if(op.equals("-"))
-					resultado = ""+(parcela1-parcela2);
+					resultado += ""+(parcela1-parcela2);
 				else if(op.equals("*"))
-					resultado = ""+(parcela1*parcela2);
+					resultado += ""+(parcela1*parcela2);
 				else if(op.equals("/"))
-					resultado = ""+(parcela1/parcela2);
+					resultado += ""+(parcela1/parcela2);
 			}
 			resultado2 += ""+ numeros.get(i);
 					
