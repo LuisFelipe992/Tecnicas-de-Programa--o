@@ -18,13 +18,13 @@ public class Banco {
 		try {
 			Connection conexao = new Conexao().getConexao();
 			
-			String query = "select * from javalar ";
+			String query = "select * from javalar where nome = 'Felipe' ";
 			ResultSet dados = conexao.prepareStatement(query).
 			executeQuery();
 			
 			while(dados.next()) {
 				nome += dados.getString("nome")+"\n";
-				System.out.println(nome);
+				
 				
 			}
 			conexao.close();

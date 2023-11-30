@@ -25,7 +25,7 @@ public class Menu extends JPanel{
 		this.botao4 = new Botao("Ler dados de outros participantes");
 		this.botao5 = new Botao("Gravar arquivo de saída");
         
-        // Adiciona espaços ao redor dos botões
+     
        
         
         this.add(botao1);

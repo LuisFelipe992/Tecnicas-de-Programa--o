@@ -30,6 +30,7 @@ public class Janela extends JFrame{
 	public Sistema sistema;
 	public String txtLinhas ;
 	public Banco javalar;
+	public String[] txt;
 	
 	public Janela( ArrayList<Corpo> planetas,ArrayList<UFO> bug, ArrayList<UFO> dev, Banco javalar) {
 		this.javalar = javalar;
@@ -100,12 +101,12 @@ public class Janela extends JFrame{
 		
 		this.menu.botao4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				javalar.selecionarTodasPessoas();
+				
 				JFrame janela = new JFrame("banco informe");
-				janela.add(new TextArea("txt"));
+				janela.add(new TextArea(javalar.selecionarTodasPessoas()));
 				
 				
-				janela.setSize(300, 300);
+				janela.setSize(300, 200);
 				janela.setResizable(false);
 				janela.setVisible(true);
 				janela.setLocation(500, 200);
